@@ -40,6 +40,8 @@ CurateVanilla::Application.configure do
 
   config.application_root_url = "https://localhost"
 
+  Rails.application.routes.default_url_options[:host] = 'curatevanilla.library.nd.edu'
+
   config.fits_path = '/opt/fits/current/fits.sh'
 
   begin
