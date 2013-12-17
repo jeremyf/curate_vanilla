@@ -36,13 +36,13 @@ local_user: &local_user
 
 development: &development
   <<: *local_user
-  database: curate_nd_development
+  database: curate_vanilla_development
   host:     localhost
   timeout: 5000
 
 test: &test
   <<: *development
-  database: curate_nd_test
+  database: curate_vanilla_test
 ci: &ci
   <<: *test
 
