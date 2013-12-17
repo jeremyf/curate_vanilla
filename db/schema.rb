@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217162127) do
+ActiveRecord::Schema.define(version: 20131217170209) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",     null: false
@@ -219,8 +219,10 @@ ActiveRecord::Schema.define(version: 20131217162127) do
     t.boolean  "agreed_to_terms_of_service"
     t.boolean  "user_does_not_require_profile_update", default: false
     t.string   "repository_id"
+    t.boolean  "approved",                             default: false, null: false
   end
 
+  add_index "users", ["approved"], name: "index_users_on_approved"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["name"], name: "index_users_on_name"
   add_index "users", ["repository_id"], name: "index_users_on_repository_id", unique: true
