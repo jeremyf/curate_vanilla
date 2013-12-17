@@ -100,7 +100,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    curate (0.6.1)
+    curate (0.6.3)
       active_attr
       active_fedora-registered_attributes (~> 0.2.0)
       bootstrap-datepicker-rails
@@ -401,7 +401,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   coffee-rails (~> 4.0.0)
-  curate (~> 0.6.1)
+  curate (~> 0.6.3)
   devise
   devise-guests (~> 0.3)
   jbuilder (~> 1.2)
