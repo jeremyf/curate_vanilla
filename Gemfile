@@ -56,3 +56,7 @@ group :development, :test do
 end
 
 gem "jettywrapper", group: [:development, :test]
+
+group :deploy do
+  gem 'capistrano', '~> 2.15'
+end
