@@ -78,6 +78,9 @@ GEM
     breadcrumbs_on_rails (2.3.0)
     browser (0.3.2)
     builder (3.1.4)
+    byebug (2.5.0)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     cancan (1.6.10)
     capistrano (2.15.5)
       highline
@@ -107,6 +110,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     curate (0.6.3)
       active_attr
       active_fedora-registered_attributes (~> 0.2.0)
@@ -130,6 +134,7 @@ GEM
       virtus
     daemons (1.1.9)
     debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
     deprecation (0.0.5)
       activesupport
     descendants_tracker (0.0.3)
@@ -435,6 +440,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  byebug
   capistrano (~> 2.15)
   clamav
   coffee-rails (~> 4.0.0)

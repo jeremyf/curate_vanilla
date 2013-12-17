@@ -1,6 +1,7 @@
 development: &DEFAULT
   admin_usernames:
   - <%= ENV['USER'] %>
+  - jeremy.n.friesen@gmail.com
 test: &TEST
   <<: *DEFAULT
   admin_usernames:

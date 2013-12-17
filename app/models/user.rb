@@ -13,6 +13,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
+
+  def self.search(query = nil)
+    if query.to_s.strip.present?
+      term = "#{query.to_s.upcase}%"
+      where("UPPER(email) LIKE :term OR UPPER(name) LIKE :term", {term: term})
+    else
+      all
+    end.order(:email)
+  end
+
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
@@ -40,6 +50,10 @@ class User < ActiveRecord::Base
       recoverable.send_reset_password_instructions
     end
     recoverable
+  end
+
+  def username
+    email
   end
 
 end
