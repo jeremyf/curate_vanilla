@@ -62,3 +62,11 @@ gem "jettywrapper", group: [:development, :test]
 group :deploy do
   gem 'capistrano', '~> 2.15'
 end
+
+group :staging do
+  gem "sentry-raven"
+end
+
+group :headless do
+  gem 'clamav'
+end
