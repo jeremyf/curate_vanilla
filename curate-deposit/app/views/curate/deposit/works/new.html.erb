@@ -1,0 +1,16 @@
+<%= simple_form_for(@work, url: works_path(work_type: @work.work_type), as: :work) do |f| %>
+  <% f.object.fieldsets.each do |fieldset, attribute_names| %>
+    <fieldset>
+      <legend><%= fieldset %></legend>
+      <% attribute_names.each do |attribute_name| %>
+        <%  # Factor towards the following lookup structure
+            # :work_type/views/form/deposit/:attribute_name
+            # :work_type/views/form/:attribute_name
+            # works/views/form/deposit/attribute_name
+            # works/views/form/attribute_name
+        %>
+        <%= render "curate/form/attribute/deposit/works/#{@work.work_type}/#{attribute_name}", f: f, attribute_name: attribute_name %>
+      <% end %>
+    </fieldset>
+  <% end %>
+<% end %>

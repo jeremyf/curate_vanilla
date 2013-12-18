@@ -46,7 +46,9 @@ gem 'unicorn'
 
 gem 'therubyracer', group: [:development, :staging]
 
-gem "curate", "~> 0.6.3"
+gem "curate", path: "../curate-deep-dive"
+gem "curate-deposit", path: "./curate-deposit"
+
 gem "better_errors", group: :development
 gem "binding_of_caller", group: :development
 gem "quiet_assets", group: :development
