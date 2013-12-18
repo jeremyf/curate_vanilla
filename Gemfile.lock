@@ -1,5 +1,5 @@
 PATH
-  remote: ../curate-deep-dive
+  remote: ./curate-deep-dive
   specs:
     curate (0.6.3)
       active_attr
