@@ -7,6 +7,8 @@ CurateVanilla::Application.routes.draw do
 
   curate_for
 
+  mount Curate::Deposit::Engine, at: 'deposit'
+
   namespace :admin do
     constraints AdminConstraint do
       resources :accounts do 
