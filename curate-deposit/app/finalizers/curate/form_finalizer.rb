@@ -85,50 +85,7 @@ module Curate
     end
 
     def construct_base_class
-      @base_class = Class.new do
-        include Virtus.model
-        include ActiveModel::Validations
-        class_attribute :fieldsets
-        class_attribute :work_type
-        class_attribute :finalizer_config, instance_writer: false
-        self.fieldsets = {}
-
-        attr_reader :controller
-        def initialize(controller)
-          @controller = controller
-          super()
-        end
-
-        attr_accessor :minted_identifier
-        protected :minted_identifier=
-        def inspect
-          "<FinalizedForm/#{work_type}#{persisted? ? " ID: " << minted_identifier : ' '}{\n\tattributes: #{attributes.inspect},\n\n\tfinalizer_config: #{finalizer_config.inspect}\n}>"
-        end
-
-        def save
-          valid? ? on_save : false
-        end
-
-        def on_save
-          true
-        end
-
-        def to_param
-          minted_identifier
-        end
-
-        def to_key
-          persisted? ? [minted_identifier] : nil
-        end
-
-        def persisted?
-          minted_identifier.present?
-        end
-
-      end
-      @base_class.finalizer_config = config
-      @base_class.work_type = name
-      @base_class
+      @base_class = Curate::FormClassBuilder.build(name, config)
     end
 
     def append_model_name(model_name = name)

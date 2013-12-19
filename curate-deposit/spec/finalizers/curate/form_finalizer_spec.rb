@@ -36,7 +36,7 @@ module Curate
       its(:citations) { should eq [] }
       its(:abstract) { should eq nil }
       its(:publishers) { should eq(['Notre Dame'])}
-      its(:fieldsets) { should eq( {required: [:title, :subjects, :publishers, :citations], secondary: [:abstract] } ) }
+
       context '#save' do
         context 'when #valid?' do
           let(:valid_attributes) { { title: 'Title' } }

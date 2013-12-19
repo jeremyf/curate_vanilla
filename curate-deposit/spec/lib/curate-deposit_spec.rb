@@ -8,7 +8,7 @@ module Curate
       let(:form_config) { double }
       let(:finalizer) { double }
       let(:controller) { double }
-      let(:klass) { Class.new }
+      let(:klass) { Class.new { def initialize(controller); end } }
       it 'should fetch a finalized form' do
         local_configuration.should_receive(:new_form_for).with(work_type).and_return(form_config)
         finalizer.should_receive(:call).with(work_type, form_config).and_return(klass)
