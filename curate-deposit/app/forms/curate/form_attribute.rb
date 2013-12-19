@@ -18,13 +18,13 @@ module Curate
       if type.is_a?(Array)
         if type.first.name == 'File'
           options[:as] = :file
+        elsif type.first.name == "Curate::Contributor"
+          options[:as] = 'curate/contributors'
+          options[:elements] ||= form.attributes.fetch(:contributors_attributes)
         end
         options[:input_html] ||= {}
         options[:input_html][:multiple] ||= 'multiple'
         options[:as] ||= :multi_value
-      elsif type.name == 'Curate::Deposit::Engine::ContributorAttributes'
-        options[:as] ||= 'curate/contributors'
-        options[:elements] ||= form.attributes.fetch(:contributors_attributes)
       else
         if type.name == 'File'
           options[:as] ||= :file

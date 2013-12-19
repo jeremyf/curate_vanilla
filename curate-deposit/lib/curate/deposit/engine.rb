@@ -1,4 +1,6 @@
 require 'curate/deposit/configuration'
+require 'virtus'
+require File.expand_path('../../../../app/models/curate/contributor', __FILE__)
 
 module Curate::Deposit
 
@@ -26,12 +28,6 @@ module Curate::Deposit
         #{config.root}/app/services
       )
     end
-    require 'virtus'
-    class ContributorAttributes < Virtus::Attribute
-      def coerce(value)
-        value.is_a?(::Hash) ? value : {}
-      end
-    end
 
     config.register_new_form_for(
       :work, {
@@ -57,7 +53,7 @@ module Curate::Deposit
           {
             attributes: {
               title: String,
-              contributors_attributes: ContributorAttributes,
+              contributors_attributes: Array[Curate::Contributor],
               abstract: String
             },
             validates: {

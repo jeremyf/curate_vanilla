@@ -1,20 +1,5 @@
 require 'simple_form'
 
-# Render Something Like This
-#
-# <div class="control-group composite optional foo_bar">
-#   <span class="control-label">
-#     <label for="foo_bar_baz" class="string composite optional input-xlarge">Baz</label>
-#     <label for="foo_bar_bong" class="string composite optional input-xlarge">Bong</label>
-#   </span>
-#   <div class="controls">
-#     <fieldset class="composite-input">
-#       <input id="foo_bar_baz" class="foo_bar_baz input-xlarge" name="foo[bar][baz]" size="30" type="text" value="baz1" />
-#       <input id="foo_bar_bong" class="foo_bar_bong input-xlarge" name="foo[bar][bong]" size="30" type="text" value="bong1" />
-#     </fieldset>
-#   </div>
-# </div>
-
 module Curate
   class ContributorsInput < SimpleForm::Inputs::Base
     def input
@@ -32,7 +17,7 @@ module Curate
 
       collection.each_with_index do |value, i|
         unless value.to_s.strip.blank?
-          markup << field_wrapper_for(value)
+          markup << field_wrapper_for(value, i)
         end
       end
 
@@ -43,20 +28,24 @@ module Curate
     def label_html_options
       returning_value = super
       returning_value[:class] ||= []
-      returning_value[:class] << 'multi_value'
+      returning_value[:class] << 'link-users'
       returning_value
     end
 
     def input_class
-      'multi_value'
+      'link-users'
+    end
+
+    def input_type
+      'contributors'
     end
 
     private
 
-    def field_wrapper_for(value)
+    def field_wrapper_for(value, index = nil)
       <<-HTML
       <li class="field-wrapper">
-      #{build_text_field(value)}
+      #{build_text_field(value, index)}
       </li>
       HTML
     end
@@ -81,7 +70,7 @@ module Curate
     end
 
 
-    def build_text_field(value)
+    def build_text_field(value, index)
       options = input_html_options.dup
 
       options[:value] = value
@@ -93,6 +82,10 @@ module Curate
       end
       options[:class] ||= []
       options[:class] += [" multi_value #{input_dom_id} multi-text-field"]
+      if !value.present?
+        options[:class] << " autocomplete-users"
+        options[:"data-url"] ||= "/people"
+      end
       options[:multiple] ||= 'multiple'
       options[:'aria-labelledby'] = label_id
       @rendered_first_element = true
