@@ -2,15 +2,7 @@ PATH
   remote: .
   specs:
     curate-deposit (0.0.1)
-      curate-work
       rails (~> 4.0.2)
-      virtus
-
-PATH
-  remote: ../curate-work
-  specs:
-    curate-work (0.0.1)
-      activemodel (~> 4.0.2)
       virtus
 
 GEM
@@ -45,21 +37,17 @@ GEM
     axiom-types (0.0.5)
       descendants_tracker (~> 0.0.1)
       ice_nine (~> 0.9)
-    backports (3.3.5)
     builder (3.1.4)
+    byebug (2.5.0)
+      columnize (~> 0.3.6)
+      debugger-linecache (~> 1.2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
-    coercible (0.2.0)
-      backports (~> 3.0, >= 3.1.0)
+    coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     columnize (0.3.6)
-    debugger (1.6.3)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.4)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.4)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
     equalizer (0.0.8)
@@ -156,9 +144,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    virtus (1.0.0)
+    virtus (1.0.1)
       axiom-types (~> 0.0.5)
-      coercible (~> 0.2)
+      coercible (~> 1.0)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.7)
 
@@ -166,9 +154,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   curate-deposit!
-  curate-work!
-  debugger
   guard-bundler
   guard-rails
   guard-rspec

@@ -1,6 +1,6 @@
 module Curate
-  # Responsible for translating a form configuration to a form
-  # object that can be rendered and persisted
+  # Responsible for translating a form configuration to a form object that can
+  # be rendered and persisted
   class FormFinalizer
     def self.call(name, config)
       new(name, config).base_class
@@ -29,11 +29,26 @@ module Curate
     end
 
     def apply_attributes(options = {})
-      options.fetch(:attributes, {}).each_pair do |name, *args|
-        base_class.attribute(name, *args)
-        yield(name, *args) if block_given?
+      options.fetch(:attributes, {}).each_pair do |name, config|
+        type, opts = extract_attribute_parameters_from(config)
+        base_class.attribute(name, type, opts)
+        yield(name, type, opts) if block_given?
       end
     end
+
+    def extract_attribute_parameters_from(config)
+      type = config
+      options = {}
+      if config.is_a?(Array)
+        if config.size == 2
+          type = config.first
+          options = config.last
+        end
+      end
+      [type, options]
+    end
+    private :extract_attribute_parameters_from
+
 
     def apply_on_save(options = {})
       on_save_options = options.fetch(:on_save, {})
@@ -77,10 +92,17 @@ module Curate
         class_attribute :work_type
         class_attribute :finalizer_config, instance_writer: false
         self.fieldsets = {}
+
+        attr_reader :controller
+        def initialize(controller)
+          @controller = controller
+          super()
+        end
+
         attr_accessor :minted_identifier
         protected :minted_identifier=
         def inspect
-          "<FinalizedForm/#{work_type} {\n\tattributes: #{attributes.inspect},\n\tfinalizer_config: #{finalizer_config.inspect}\n}>"
+          "<FinalizedForm/#{work_type}#{persisted? ? " ID: " << minted_identifier : ' '}{\n\tattributes: #{attributes.inspect},\n\n\tfinalizer_config: #{finalizer_config.inspect}\n}>"
         end
 
         def save

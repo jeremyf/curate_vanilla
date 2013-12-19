@@ -22,24 +22,70 @@ module Curate::Deposit
         #{config.root}/app/services
       )
     end
-
+    require 'virtus'
+    class ContributorAttributes < Virtus::Attribute
+      def coerce(value)
+        value.is_a?(::Hash) ? value : {}
+      end
+    end
     config.register_new_form_for(
-      :work,
+      :article,
       {
         fieldsets: {
           required:
-          { attributes: { title: String },
-            validates: { title: {presence: true} },
+          {
+            attributes: {
+              title: String,
+              contributors_attributes: ContributorAttributes,
+              abstract: String
             },
-          secondary:
-          { attributes: { abstract: String }}
+            validates: {
+              title: {presence: true},
+              abstract: {presence: true}
+            },
+          },
+          additional:
+          {
+            attributes: {
+              subject: Array[String],
+              publisher: Array[String],
+              recommended_citation: Array[String],
+              language: Array[String],
+            }
+          },
+          content:
+          {
+            attributes: {
+              linked_resource_urls: Array[String],
+              files: Array[File],
+            }
+          },
+          identifier: {
+            attributes: {
+              doi_assignment_strategy: String,
+              existing_identifier: String,
+              embargo_release_date: Date
+            }
+          },
+          access_rights: {
+            attributes: {
+              visibility: [String, default: 'restricted'],
+              rights: [String, default: 'All rights reserved']
+            },
+            validates: {
+              visibility: {presence: true},
+              rights: {presence: true}
+            }
+          }
         },
         on_save: {
           write_attributes: lambda {|object, attributes|
-            Work.new(pid: object.persisted_identifier).tap {|work|
-              work.attributes = attributes
-              work.save!
-            }
+            article = Article.new(pid: object.minted_identifier)
+            current_user = object.controller.current_user
+            actor = CurationConcern.actor(article, current_user, attributes)
+            response = actor.create
+            require 'byebug'; byebug; true;
+            true
           }
         },
         identity_minter: 'Curate::Deposit::MintingService'

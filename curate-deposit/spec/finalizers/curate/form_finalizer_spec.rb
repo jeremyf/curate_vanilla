@@ -6,7 +6,12 @@ module Curate
       {
         fieldsets: {
           required:
-          { attributes: { title: String },
+          { attributes: {
+              title: String,
+              subjects: Array[String],
+              publishers: [Array[String], default: ['Notre Dame']],
+              citations: [Array[String]]
+            },
             validates: { title: {presence: true} },
             on_save: { publish_title: title_publisher },
             },
@@ -24,13 +29,14 @@ module Curate
     let(:base_class) { described_class.call(name, config) }
 
     context 'instance of base_class' do
-      subject { base_class.new }
-      it { should respond_to :title }
-      it { should respond_to :title= }
-      it { should respond_to :abstract }
-      it { should respond_to :abstract= }
-      its(:fieldsets) { should eq( {required: [:title], secondary: [:abstract] } ) }
-
+      let(:controller) { double }
+      subject { base_class.new(controller) }
+      its(:title) { should eq nil}
+      its(:subjects) { should eq [] }
+      its(:citations) { should eq [] }
+      its(:abstract) { should eq nil }
+      its(:publishers) { should eq(['Notre Dame'])}
+      its(:fieldsets) { should eq( {required: [:title, :subjects, :publishers, :citations], secondary: [:abstract] } ) }
       context '#save' do
         context 'when #valid?' do
           let(:valid_attributes) { { title: 'Title' } }

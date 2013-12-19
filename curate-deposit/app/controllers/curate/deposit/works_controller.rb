@@ -20,7 +20,7 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
 
   protected
   def work
-    @work ||= Curate::Deposit.new_form_for(params.fetch(:work_type))
+    @work ||= Curate::Deposit.new_form_for(self, params.fetch(:work_type))
   end
   helper_method :work
 

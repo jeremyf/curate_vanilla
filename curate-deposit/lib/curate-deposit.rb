@@ -8,14 +8,16 @@ module Curate::Deposit
     yield(config)
   end
 
-  def new_form_for(work_type, options = {})
+  def new_form_for(controller, work_type, options = {})
     @new_forms_for ||= {}
     @new_forms_for[work_type.to_sym] ||= begin
       configuration = options.fetch(:config) { config }
       finalizer = options.fetch(:finalizer) { Curate::FormFinalizer }
       work_config = configuration.new_form_for(work_type)
       finalizer.call(work_type, work_config)
-    end.new
+    end
+    form = @new_forms_for[work_type.to_sym]
+    form.new(controller)
   end
 
   def authorize!(controller, work)

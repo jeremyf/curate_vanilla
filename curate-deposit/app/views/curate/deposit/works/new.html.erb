@@ -9,8 +9,10 @@
             # works/views/form/deposit/attribute_name
             # works/views/form/attribute_name
         %>
+        <%# File.open("/Users/jfriesen/Repositories/curate_vanilla/curate-deposit/app/views/curate/form/attribute/_#{attribute_name}.html.erb", 'w+') %>
         <%= render "curate/form/attribute/deposit/works/#{@work.work_type}/#{attribute_name}", f: f, attribute_name: attribute_name %>
       <% end %>
     </fieldset>
   <% end %>
+  <%= f.submit %>
 <% end %>
