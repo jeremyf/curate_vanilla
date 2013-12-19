@@ -102,9 +102,7 @@ module Curate::Deposit
             article = Article.new(pid: object.minted_identifier)
             current_user = object.controller.current_user
             actor = CurationConcern.actor(article, current_user, attributes)
-            response = actor.create
-            require 'byebug'; byebug; true;
-            true
+            actor.create
           }
         },
         identity_minter: 'Curate::Deposit::MintingService'
