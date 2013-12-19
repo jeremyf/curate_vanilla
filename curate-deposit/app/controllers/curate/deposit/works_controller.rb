@@ -1,6 +1,7 @@
 class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
-
   respond_to :html
+  layout 'curate_nd/1_column'
+
   class_attribute :responder, instance_predicate: false, instance_accessor: false
   self.responder = Curate::Deposit::WorksResponder
   prepend_view_path Curate::FormAttributeResolver.new(self)

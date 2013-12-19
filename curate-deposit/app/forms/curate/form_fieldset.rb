@@ -7,7 +7,6 @@ module Curate
       @name = name
       @attribute_configurations = attribute_configurations
     end
-    delegate :controller, to: :form
 
     def attributes
       @attributes ||= attribute_configurations.collect {|ac| ::Curate::FormAttribute.new(self, ac) }
