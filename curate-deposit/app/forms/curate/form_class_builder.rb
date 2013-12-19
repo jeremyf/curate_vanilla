@@ -1,6 +1,8 @@
 module Curate
   module FormClassBuilder
     module_function
+    # Responsible for creating an finalized Form class that can be used to send
+    # to the controller.
     def build(name, config)
       form_class = Class.new do
         include Virtus.model
