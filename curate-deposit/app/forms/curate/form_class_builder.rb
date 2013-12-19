@@ -17,13 +17,13 @@ module Curate
         end
 
         def fieldsets
-          @fieldsets ||= self.class.fieldsets.map {|name, attribute_names| FormFieldset.new(self, name, attribute_names)}
+          @fieldsets ||= self.class.fieldsets.map {|name, attribute_names| ::Curate::FormFieldset.new(self, name, attribute_names)}
         end
 
         attr_accessor :minted_identifier
         protected :minted_identifier=
         def inspect
-          "<FinalizedForm/#{work_type}#{persisted? ? " ID: " << minted_identifier : ' '}{\n\tattributes: #{attributes.inspect},\n\n\tfinalizer_config: #{finalizer_config.inspect}\n}>"
+          "<FinalizedForm/#{work_type}#{persisted? ? " ID: " << minted_identifier : ' '}\n{\n\tattributes: #{attributes.inspect},\n\n\tfinalizer_config: #{finalizer_config.inspect}\n}\n--->"
         end
 
         def save

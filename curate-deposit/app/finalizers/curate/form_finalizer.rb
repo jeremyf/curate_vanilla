@@ -20,11 +20,11 @@ module Curate
     attr_reader :config, :name
     def apply_fieldsets
       config.fetch(:fieldsets, {}).each_pair do |fieldset_name, options|
-        attribute_names = []
-        apply_attributes(options) {|attribute_name, *| attribute_names << attribute_name }
+        attributes = []
+        apply_attributes(options) {|name, type, opts| attributes << { name: name, type: type, options: opts } }
         apply_validation(options)
         apply_on_save(options)
-        base_class.fieldsets[fieldset_name] = attribute_names
+        base_class.fieldsets[fieldset_name] = attributes
       end
     end
 
