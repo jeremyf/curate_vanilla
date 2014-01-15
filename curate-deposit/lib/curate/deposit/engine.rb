@@ -42,7 +42,7 @@ module Curate::Deposit
             }
           }
         },
-        identity_minter: lambda {|*args| rand(1000) }
+        identity_minter: 'Curate::Deposit::MintingService'
       }
     )
     config.register_new_form_for(

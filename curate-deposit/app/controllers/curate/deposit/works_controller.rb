@@ -7,16 +7,16 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
   prepend_view_path Curate::FormAttributeResolver.new(self)
 
   def new
-    authorize_action!
-    assign_attributes
-    respond_with_work
+    validate_request(work)
+    assign_attributes(work)
+    respond_with(work)
   end
 
   def create
-    authorize_action!
-    assign_attributes
-    save_work
-    respond_with_work
+    validate_request(work)
+    assign_attributes(work)
+    create_deposit(work)
+    respond_with(work)
   end
 
   protected
@@ -25,21 +25,16 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
   end
   helper_method :work
 
-  def authorize_action!
+  def validate_request(work)
     Curate::Deposit.authorize!(self, work)
   end
 
-  def assign_attributes
+  def assign_attributes(work)
     work.attributes = params.fetch(:work) { Hash.new }
   end
 
-  def save_work
+  def create_deposit(work)
     work.save
   end
-
-  def respond_with_work
-    respond_with(work)
-  end
-
 
 end

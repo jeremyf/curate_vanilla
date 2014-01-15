@@ -26,6 +26,7 @@ PATH
       mini_magick
       morphine
       rails (~> 4.0.2)
+      rails_autolink
       simple_form (~> 3.0.1)
       sufia-models (~> 3.4.0)
       virtus
@@ -210,7 +211,7 @@ GEM
       logger
       mediashelf-loggable
     json (1.8.1)
-    kaminari (0.15.0)
+    kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     listen (2.3.1)
@@ -269,7 +270,7 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
-    rack-protection (1.5.1)
+    rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -283,6 +284,8 @@ GEM
       sprockets-rails (~> 2.0.0)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
+    rails_autolink (1.1.5)
+      rails (> 3.1)
     railties (4.0.2)
       actionpack (= 4.0.2)
       activesupport (= 4.0.2)
