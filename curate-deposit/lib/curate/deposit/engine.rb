@@ -42,7 +42,7 @@ module Curate::Deposit
             }
           }
         },
-        identity_minter: 'Curate::Deposit::MintingService'
+        identity_minter: 'Curate::Deposit::NoidMintingService'
       }
     )
     config.register_new_form_for(
@@ -103,7 +103,7 @@ module Curate::Deposit
             actor.create
           }
         },
-        identity_minter: 'Curate::Deposit::MintingService'
+        identity_minter: 'Curate::Deposit::NoidMintingService'
       }
     )
   end

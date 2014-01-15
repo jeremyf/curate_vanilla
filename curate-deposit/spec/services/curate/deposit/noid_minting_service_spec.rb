@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Curate::Deposit
-  describe MintingService do
+  describe NoidMintingService do
     subject { described_class }
     let(:form) { double }
     let(:attributes) { double }
