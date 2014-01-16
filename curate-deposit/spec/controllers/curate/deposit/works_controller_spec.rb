@@ -41,7 +41,7 @@ module Curate::Deposit
           it 'should assign a work and redirect to completion path' do
             post :create, work_type: work_type, work: { title: 'Hello' }, use_route: :curate_deposit
             expect(assigns(:work)).to eq(work_form)
-            expect(response).to redirect_to(controller.curate_deposit.work_path(assigns(:work)))
+            expect(response).to be_redirect
           end
         end
 
@@ -76,7 +76,7 @@ module Curate::Deposit
           work_form.should_receive(:save)
           put :update, id: pid, work: { title: 'Hello' }, use_route: :curate_deposit
           expect(assigns(:work)).to eq(work_form)
-          expect(response).to redirect_to(controller.curate_deposit.work_path(assigns(:work)))
+          expect(response).to be_redirect
         end
       end
     end

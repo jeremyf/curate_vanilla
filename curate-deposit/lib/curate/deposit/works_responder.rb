@@ -4,15 +4,17 @@ module Curate::Deposit
       Base.call(*args, &block)
     end
     class Base < ActionController::Responder
-      def to_html
+
+      def navigation_behavior(error)
         if get?
-          render
-        elsif has_errors?
-          render :action => (post? ? :new : :edit)
+          raise error
+        elsif has_errors? && default_action
+          render :action => default_action
         else
-          redirect_to(controller.curate_deposit.work_path(resource.to_param) , { flash: { success: "Depositing #{resource}"} })
+          redirect_to("/concern/#{resource.work_type.pluralize}/#{resource.to_param}", { flash: { success: "Depositing #{resource}"} })
         end
       end
+
     end
   end
 end
