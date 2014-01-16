@@ -1,6 +1,6 @@
 module Curate
   # Responsible for translating a form configuration to a form object that can
-  # be rendered and persisted
+  # be rendered and persisted.
   class FormFinalizer
     def self.call(name, config)
       new(name, config).base_class
@@ -13,6 +13,7 @@ module Curate
       apply_identity_minter(config.fetch(:identity_minter))
       apply_fieldsets
       apply_on_save(config)
+      apply_on_load_from_persistence(config)
     end
 
     private
@@ -24,6 +25,7 @@ module Curate
         apply_attributes(options) {|name, type, opts| attributes << { name: name, type: type, options: opts } }
         apply_validation(options)
         apply_on_save(options)
+        apply_on_load_from_persistence(options)
         base_class.fieldsets[fieldset_name] = attributes
       end
     end
@@ -58,6 +60,19 @@ module Curate
           define_method(:on_save) do
             on_save_method.bind(self).call
             opts.each_pair {|name, callable| callable.call(self, attributes) }
+          end
+        end
+      end
+    end
+
+    def apply_on_load_from_persistence(options = {})
+      on_load_from_persistence_options = options.fetch(:on_load_from_persistence, {})
+      if on_load_from_persistence_options.present?
+        base_class.instance_exec(on_load_from_persistence_options) do |opts|
+          on_load_from_persistence_method = instance_method(:on_load_from_persistence)
+          define_method(:on_load_from_persistence) do
+            on_load_from_persistence_method.bind(self).call
+            opts.each_pair {|name, callable| callable.call(self) }
           end
         end
       end

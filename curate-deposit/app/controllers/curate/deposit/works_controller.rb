@@ -7,22 +7,32 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
   prepend_view_path Curate::FormAttributeResolver.new(self)
 
   def new
-    validate_request(work)
-    assign_attributes(work)
-    respond_with(work)
+    validate_request(new_work)
+    assign_attributes(new_work)
+    respond_with(new_work)
   end
 
   def create
-    validate_request(work)
-    assign_attributes(work)
-    create_deposit(work)
-    respond_with(work)
+    validate_request(new_work)
+    assign_attributes(new_work)
+    create_deposit(new_work)
+    respond_with(new_work)
+  end
+
+  def edit
+    validate_request(existing_work)
   end
 
   protected
-  def work
+  def new_work
     @work ||= Curate::Deposit.new_form_for(self, params.fetch(:work_type))
   end
+
+  def existing_work
+    @work ||= Curate::Deposit.existing_form_for(self, params.fetch(:id))
+  end
+
+  attr_reader :work
   helper_method :work
 
   def validate_request(work)

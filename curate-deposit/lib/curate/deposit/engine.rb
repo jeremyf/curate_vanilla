@@ -88,6 +88,12 @@ module Curate::Deposit
             actor.create
           }
         },
+        on_load_from_persistence: {
+          load_attributes: lambda {|form|
+            persisted_object = ActiveFedora::Base.find(form.minted_identifier)
+            form.attributes = persisted_object.attributes
+          }
+        },
         identity_minter: 'Curate::Deposit::NoidMintingService'
       }
     )

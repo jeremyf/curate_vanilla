@@ -22,9 +22,11 @@ module Curate
         end
 
         attr_reader :controller
-        def initialize(controller)
+        def initialize(controller, existing_identifier = nil)
           @controller = controller
           super()
+          self.minted_identifier = existing_identifier
+          on_load_from_persistence if persisted?
         end
 
         def fieldsets
@@ -42,6 +44,10 @@ module Curate
         end
 
         def on_save
+          true
+        end
+
+        def on_load_from_persistence
           true
         end
 
