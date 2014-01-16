@@ -170,6 +170,76 @@ module Curate::Deposit
     )
 
     config.register_new_form_for(
+      :image,
+      {
+        fieldsets: {
+          required:
+          {
+            attributes: {
+              title: String,
+              contributors_attributes: Array[Curate::Contributor],
+              date_created: Array[Date],
+              description: String,
+              category: Array[String],
+              location: Array[String],
+              measurements: Array[String],
+              material: Array[String]
+            },
+            validates: {
+              title: {presence: true},
+              description: {presence: true}
+            },
+          },
+          additional:
+          {
+            attributes: {
+              source: Array[String],
+              publisher: Array[String],
+              subject: Array[String],
+              inscription: Array[String],
+              StateEdition: Array[String],
+              textref: Array[String],
+              cultural_context: Array[String],
+              style_period: Array[String],
+              technique: Array[String],
+            },
+          },
+          content:
+          {
+            attributes: {
+              files: Array[File],
+            }
+          },
+          identifier: {
+            attributes: {
+              doi_assignment_strategy: String,
+              existing_identifier: String,
+              embargo_release_date: Date
+            }
+          },
+          access_rights: {
+            attributes: {
+              visibility: [String, default: 'restricted'],
+              rights: [String, default: 'All rights reserved']
+            },
+            validates: {
+              visibility: {presence: true},
+              rights: {presence: true}
+            }
+          }
+        },
+        on_save: {
+          write_attributes: lambda {|object, attributes|
+            article = Image.new(pid: object.minted_identifier)
+            current_user = object.controller.current_user
+            actor = CurationConcern.actor(article, current_user, attributes)
+            actor.create
+          }
+        },
+        identity_minter: 'Curate::Deposit::NoidMintingService'
+      }
+    )
+    config.register_new_form_for(
       :document,
       {
         fieldsets: {

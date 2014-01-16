@@ -43,6 +43,11 @@ module Curate::Deposit
         subject { Curate::Deposit.finalize_new_form_for(:document) }
         it_behaves_like "a valid Curate::FormClassBuilder", :document
       end
+
+      context ':image form' do
+        subject { Curate::Deposit.finalize_new_form_for(:image) }
+        it_behaves_like "a valid Curate::FormClassBuilder", :image
+      end
     end
   end
 end
