@@ -8,9 +8,18 @@ module Curate
         include Virtus.model
         include ActiveModel::Validations
         class_attribute :fieldsets, instance_writer: false, instance_reader: false
-        class_attribute :work_type
+        class_attribute :work_type, instance_writer: false
         class_attribute :finalizer_config, instance_writer: false
         self.fieldsets = {}
+
+        module_exec(self) do |module_context|
+          def self.inspect
+            "Curate::FormClassBuilder(#{work_type},#{finalizer_config})"
+          end
+          def self.to_s
+            "Curate::FormClassBuilder(#{work_type},#{finalizer_config})"
+          end
+        end
 
         attr_reader :controller
         def initialize(controller)

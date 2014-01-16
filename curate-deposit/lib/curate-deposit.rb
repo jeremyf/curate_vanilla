@@ -9,15 +9,18 @@ module Curate::Deposit
   end
 
   def new_form_for(controller, work_type, options = {})
+    finalize_new_form_for(work_type, options).new(controller)
+  end
+
+  def finalize_new_form_for(work_type, options = {})
     @new_forms_for ||= {}
-    @new_forms_for[work_type.to_sym] ||= begin
+    @new_forms_for[work_type.to_s] ||= begin
       configuration = options.fetch(:config) { config }
       finalizer = options.fetch(:finalizer) { Curate::FormFinalizer }
       work_config = configuration.new_form_for(work_type)
       finalizer.call(work_type, work_config)
     end
-    form = @new_forms_for[work_type.to_sym]
-    form.new(controller)
+    @new_forms_for[work_type.to_s]
   end
 
   def authorize!(controller, work)
