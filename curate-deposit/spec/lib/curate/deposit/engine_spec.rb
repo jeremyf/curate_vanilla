@@ -24,9 +24,9 @@ module Curate::Deposit
     end
     context '.register_new_form_for' do
 
-      context ':work form' do
-        subject { Curate::Deposit.finalize_new_form_for(:work) }
-        it_behaves_like "a valid Curate::FormClassBuilder", :work
+      context ':generic_work form' do
+        subject { Curate::Deposit.finalize_new_form_for(:generic_work) }
+        it_behaves_like "a valid Curate::FormClassBuilder", :generic_work
       end
 
       context ':article form' do

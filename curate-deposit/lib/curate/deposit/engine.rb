@@ -30,21 +30,68 @@ module Curate::Deposit
     end
 
     config.register_new_form_for(
-      :work, {
+      :generic_work,
+      {
         fieldsets: {
           required:
           {
             attributes: {
               title: String,
+              contributors_attributes: Array[Curate::Contributor],
+              description: String
             },
             validates: {
               title: {presence: true},
+              description: {presence: true}
+            },
+          },
+          additional:
+          {
+            attributes: {
+              subject: Array[String],
+              publisher: Array[String],
+              bibliographic_citation: Array[String],
+              source: Array[String],
+              language: Array[String],
             }
+          },
+          content:
+          {
+            attributes: {
+              linked_resource_urls: Array[String],
+              files: Array[File],
+            }
+          },
+          identifier: {
+            attributes: {
+              doi_assignment_strategy: String,
+              existing_identifier: String,
+              embargo_release_date: Date
+            }
+          },
+          access_rights: {
+            attributes: {
+              visibility: [String, default: 'restricted'],
+              rights: [String, default: 'All rights reserved']
+            },
+            validates: {
+              visibility: {presence: true},
+              rights: {presence: true}
+            }
+          }
+        },
+        on_save: {
+          write_attributes: lambda {|object, attributes|
+            article = GenericWork.new(pid: object.minted_identifier)
+            current_user = object.controller.current_user
+            actor = CurationConcern.actor(article, current_user, attributes)
+            actor.create
           }
         },
         identity_minter: 'Curate::Deposit::NoidMintingService'
       }
     )
+
     config.register_new_form_for(
       :article,
       {
