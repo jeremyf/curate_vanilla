@@ -245,6 +245,7 @@
         <filter class="solr.PorterStemFilterFactory"/>
         -->
         <filter class="solr.TrimFilterFactory"/>
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15" side="front"/>
       </analyzer>
     </fieldType>
         
