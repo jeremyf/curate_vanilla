@@ -34,6 +34,11 @@ module Curate::Deposit
         it_behaves_like "a valid Curate::FormClassBuilder", :article
       end
 
+      context ':dataset form' do
+        subject { Curate::Deposit.finalize_new_form_for(:dataset) }
+        it_behaves_like "a valid Curate::FormClassBuilder", :dataset
+      end
+
       context ':document form' do
         subject { Curate::Deposit.finalize_new_form_for(:document) }
         it_behaves_like "a valid Curate::FormClassBuilder", :document

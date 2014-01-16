@@ -108,7 +108,7 @@ module Curate::Deposit
     )
 
     config.register_new_form_for(
-      :document,
+      :dataset,
       {
         fieldsets: {
           required:
@@ -130,6 +130,85 @@ module Curate::Deposit
               publisher: Array[String],
               recommended_citation: Array[String],
               language: Array[String],
+            }
+          },
+          content:
+          {
+            attributes: {
+              linked_resource_urls: Array[String],
+              files: Array[File],
+            }
+          },
+          identifier: {
+            attributes: {
+              doi_assignment_strategy: String,
+              existing_identifier: String,
+              embargo_release_date: Date
+            }
+          },
+          access_rights: {
+            attributes: {
+              visibility: [String, default: 'restricted'],
+              rights: [String, default: 'All rights reserved']
+            },
+            validates: {
+              visibility: {presence: true},
+              rights: {presence: true}
+            }
+          }
+        },
+        on_save: {
+          write_attributes: lambda {|object, attributes|
+            article = Dataset.new(pid: object.minted_identifier)
+            current_user = object.controller.current_user
+            actor = CurationConcern.actor(article, current_user, attributes)
+            actor.create
+          }
+        },
+        identity_minter: 'Curate::Deposit::NoidMintingService'
+      }
+    )
+
+    config.register_new_form_for(
+      :document,
+      {
+        fieldsets: {
+          required:
+          {
+            attributes: {
+              title: String,
+              contributors_attributes: Array[Curate::Contributor],
+              description: String
+            },
+            validates: {
+              title: {presence: true},
+              description: {presence: true}
+            },
+          },
+          additional:
+          {
+            attributes: {
+              type: String,
+              subject: Array[String],
+              publisher: Array[String],
+              bibliographic_citation: Array[String],
+              source: Array[String],
+              language: Array[String],
+            },
+            validates: {
+              type: {inclusion: { in: [
+                                    'Book',
+                                    'Book Chapter',
+                                    'Document',
+                                    'Report',
+                                    'Pamphlet',
+                                    'Brochure',
+                                    'Manuscript',
+                                    'Letter',
+                                    'Newsletter',
+                                    'Press Release',
+                                    'White Paper'
+              ], allow_blank: true }}
             }
           },
           content:
