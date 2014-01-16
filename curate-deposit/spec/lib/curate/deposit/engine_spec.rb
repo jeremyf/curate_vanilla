@@ -16,9 +16,7 @@ module Curate::Deposit
         let(:instance) { subject.new(context) }
         it { expect(instance).to respond_to(:valid?)}
         it 'should not raise an error on #valid?' do
-          expect{
-            instance.valid?
-          }.to_not raise_error(NoMethodError)
+          expect{ instance.valid? }.to_not raise_error
         end
       end
     end

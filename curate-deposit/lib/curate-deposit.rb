@@ -27,6 +27,10 @@ module Curate::Deposit
     true
   end
 
+  def reset_config!
+    @new_forms_for = {}
+  end
+
 end
 
 require "curate/deposit/engine"
