@@ -58,16 +58,25 @@ module Curate::Deposit
 
     context 'edit/update' do
       let(:work_form) { work_form_class.new(controller, pid) }
+      before(:each) do
+        Curate::Deposit.should_receive(:existing_form_for).with(controller, pid).and_return(work_form)
+        Curate::Deposit.should_receive(:authorize!).with(controller, work_form).and_return(true)
+      end
       context 'GET #edit' do
-        before(:each) do
-          Curate::Deposit.should_receive(:existing_form_for).with(controller, pid).and_return(work_form)
-          Curate::Deposit.should_receive(:authorize!).with(controller, work_form).and_return(true)
-        end
 
         it 'should assign a :work' do
           get :edit, id: pid, use_route: :curate_deposit
           expect(assigns(:work)).to eq(work_form)
           expect(response).to be_success
+        end
+      end
+
+      context 'PUT #update' do
+        it 'should assign a work and redirect to completion path' do
+          work_form.should_receive(:save)
+          put :update, id: pid, work: { title: 'Hello' }, use_route: :curate_deposit
+          expect(assigns(:work)).to eq(work_form)
+          expect(response).to redirect_to(controller.curate_deposit.work_path(assigns(:work)))
         end
       end
     end

@@ -21,6 +21,15 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
 
   def edit
     validate_request(existing_work)
+    assign_attributes(existing_work)
+    respond_with(existing_work)
+  end
+
+  def update
+    validate_request(existing_work)
+    assign_attributes(existing_work)
+    update_deposit(existing_work)
+    respond_with(existing_work)
   end
 
   protected
@@ -44,6 +53,10 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
   end
 
   def create_deposit(work)
+    work.save
+  end
+
+  def update_deposit(work)
     work.save
   end
 
