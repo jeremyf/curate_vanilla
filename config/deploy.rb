@@ -180,6 +180,10 @@ namespace :maintenance do
   task :reindex_solr, :roles => :app do
     run "cd #{current_path} && bundle exec rails runner 'Sufia.queue.push(ReindexWorker.new)' -e #{rails_env}"
   end
+
+  task :reindex_solr_direct, :roles => :app do
+    run "cd #{current_path} && bundle exec rails runner 'ReindexWorker.new.run' -e #{rails_env}"
+  end
   before 'maintenance:reindex_solr', 'maintenance:delete_index_solr'
 
   task :migrate_person, :roles => :app do
