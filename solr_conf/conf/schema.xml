@@ -234,8 +234,19 @@
     </fieldtype>
     
     <!-- A text field with defaults appropriate for English -->
+    <!--
+      Separating index analyzer and query analyzer. Without this separation,
+      when the solr.EdgeNGramFilterFactory filter class is mixed in, we end up
+      with the following scenario:
+
+      I am searching for "norm". I find two matches "normalized" and "normandy".
+      I am searching for "normative". I find two matches "normalized" and "normandy".
+
+      This happens because the query was also being broken up by the
+      EdgeNGramFilterFactory (i.e. the "normative" query was tokenized to ["no", "nor", "norm", "norma", etc.)
+    -->
     <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
+      <analyzer type="index">
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
         <filter class="solr.EnglishPossessiveFilterFactory"/>
@@ -245,10 +256,20 @@
         <filter class="solr.PorterStemFilterFactory"/>
         -->
         <filter class="solr.TrimFilterFactory"/>
-        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="15" side="front"/>
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="15" side="front"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.EnglishPossessiveFilterFactory"/>
+        <!-- EnglishMinimalStemFilterFactory is less aggressive than PorterStemFilterFactory: -->
+        <filter class="solr.EnglishMinimalStemFilterFactory"/>
+        <!--
+        <filter class="solr.PorterStemFilterFactory"/>
+        -->
+        <filter class="solr.TrimFilterFactory"/>
       </analyzer>
     </fieldType>
-        
     <!-- queries for paths match documents at that path, or in descendent paths -->
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
@@ -258,7 +279,7 @@
         <tokenizer class="solr.KeywordTokenizerFactory" />
       </analyzer>
     </fieldType>
-    
+
     <!-- queries for paths match documents at that path, or in ancestor paths -->
     <fieldType name="ancestor_path" class="solr.TextField">
       <analyzer type="index">
