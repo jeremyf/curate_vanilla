@@ -1,31 +1,19 @@
 <% content_for :page_title, "New #{work.human_readable_type}" %>
 <% content_for :page_header do %>
 
-<h2>Describe Your <%= work.human_readable_type %></h2>
+<h2>Describe Your <%= t(work.work_type, scope: 'curate_deposit.form.work_type') %></h2>
 <p>
   The more descriptive information you provide the better we can serve your needs.
 </p>
 <p>
-  Please consider releasing your <%= work.human_readable_type %> as an <span class="label label-success">Open Access</span> work.
+  Please consider releasing your <%= t(work.work_type, scope: 'curate_deposit.form.work_type') %> as an <span class="label label-success">Open Access</span> work.
 </p>
 
 <% end %>
 
 <%= simple_form_for(work, url: works_path(work_type: work.work_type), as: :work) do |f| %>
   <% f.object.fieldsets.each do |fieldset| %>
-    <fieldset>
-      <legend><%= fieldset.name %></legend>
-      <% fieldset.attributes.each do |attribute| %>
-        <%  # Factor towards the following lookup structure
-            # :work_type/views/form/deposit/:attribute_name
-            # :work_type/views/form/:attribute_name
-            # works/views/form/deposit/attribute_name
-            # works/views/form/attribute_name
-        %>
-        <%# File.open("/Users/jfriesen/Repositories/curate_vanilla/curate-deposit/app/views/curate/form/attribute/_#{attribute_name}.html.erb", 'w+') %>
-        <%= render "curate/form/attribute/#{@work.work_type}/deposit/#{attribute.name}", f: f, attribute: attribute %>
-      <% end %>
-    </fieldset>
+    <%= fieldset.render(f) %>
   <% end %>
   <%= f.submit %>
 <% end %>

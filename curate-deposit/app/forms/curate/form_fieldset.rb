@@ -16,6 +16,15 @@ module Curate
       attribute_configurations.collect{|config| config.fetch(:name) }
     end
 
+    def render(f, template = f.template)
+      template.content_tag("fieldset") do
+        text = template.content_tag("legend", name) + "\n"
+        attributes.each_with_object(text) do |attribute, html|
+          html << "\n" << template.render("curate/form/attribute/#{form.work_type}/deposit/#{attribute.name}", f: f, attribute: attribute)
+        end
+      end
+    end
+
     protected
     attr_reader :attribute_configurations
   end
