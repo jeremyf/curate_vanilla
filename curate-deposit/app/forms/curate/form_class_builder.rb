@@ -9,6 +9,7 @@ module Curate
         include ActiveModel::Validations
         class_attribute :fieldsets, instance_writer: false, instance_reader: false
         class_attribute :work_type, instance_writer: false
+        class_attribute :human_readable_type
         class_attribute :finalizer_config, instance_writer: false
         self.fieldsets = {}
 
@@ -66,6 +67,7 @@ module Curate
       end
       form_class.finalizer_config = config
       form_class.work_type = name
+      form_class.human_readable_type = name.titleize
       form_class
     end
   end
