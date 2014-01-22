@@ -25,9 +25,9 @@ module Curate
       options ||= {}
       if type.is_a?(Array)
         if type.first.name == 'File'
-          options[:as] = :file
+          options[:as] ||= :file
         elsif type.first.name == "Curate::Contributor"
-          options[:as] = 'curate/contributors'
+          options[:as] ||= 'curate/contributors'
           options[:elements] ||= form.attributes.fetch(:contributors_attributes)
         end
         options[:input_html] ||= {}
