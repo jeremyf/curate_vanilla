@@ -4,7 +4,7 @@ class Curate::Deposit::WorksController < Curate::Deposit::ApplicationController
 
   class_attribute :responder, instance_predicate: false, instance_accessor: false
   self.responder = Curate::Deposit::WorksResponder
-  prepend_view_path Curate::FormAttributeResolver.new(self)
+  prepend_view_path Curate::FormResolver.new(self)
 
   def new
     validate_request(new_work)

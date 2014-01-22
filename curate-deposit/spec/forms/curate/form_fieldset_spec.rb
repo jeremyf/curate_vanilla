@@ -2,13 +2,14 @@ require 'spec_helper'
 
 module Curate
   describe FormFieldset do
-    let(:form) { double }
+    let(:form) { double(work_type: :article) }
     let(:name) { :required }
     let(:attributes) { [{name: :title, type: String, options: {}}] }
     subject { Curate::FormFieldset.new(form, name, attributes)}
     its(:name) { should == name }
     its(:form) { should == form }
     its(:attribute_names) { should == [:title] }
+    its(:work_type) { should == form.work_type }
 
     context '#attributes' do
       subject { Curate::FormFieldset.new(form, name, attributes).attributes }
@@ -22,11 +23,10 @@ module Curate
       let(:template) { double("Template") }
       let(:form_builder) { double("Builder", template: template) }
       before(:each) do
-        template.should_receive("fieldset")
+        template.should_receive("render").with(subject.partial_path, {f: form_builder, fieldset: subject})
       end
       it 'should render each attribute' do
         subject.render(form_builder)
-        require 'byebug'; byebug; true;
       end
     end
   end

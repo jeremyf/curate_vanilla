@@ -8,6 +8,8 @@ module Curate
       @attribute_configurations = attribute_configurations
     end
 
+    delegate :work_type, to: :form
+
     def attributes
       @attributes ||= attribute_configurations.collect {|ac| ::Curate::FormAttribute.new(self, ac) }
     end
@@ -17,12 +19,11 @@ module Curate
     end
 
     def render(f, template = f.template)
-      template.content_tag("fieldset") do
-        text = template.content_tag("legend", name) + "\n"
-        attributes.each_with_object(text) do |attribute, html|
-          html << "\n" << template.render("curate/form/attribute/#{form.work_type}/deposit/#{attribute.name}", f: f, attribute: attribute)
-        end
-      end
+      template.render(partial_path, f: f, fieldset: self)
+    end
+
+    def partial_path
+      "curate/form/#{work_type}/deposit/fieldset_#{name}"
     end
 
     protected

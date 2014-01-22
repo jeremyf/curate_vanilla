@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Curate
-  describe FormAttributeResolver do
+  describe FormResolver do
     before(:each) do
       @controller = Class.new(ApplicationController) do
         self.view_paths = [
@@ -9,14 +9,14 @@ module Curate
           ActionView::FixtureResolver.new("curate/attribute/_title.html.erb" => "Curate/Attribute/Title"),
         ]
 
-        prepend_view_path Curate::FormAttributeResolver.new(self, /\Acurate/)
+        prepend_view_path Curate::FormResolver.new(self, /\Acurate/)
       end.new
     end
 
     let(:controller) { @controller }
     let(:details) { {formats: [:html], locale: [:en], handlers: [:erb] } }
     let(:prefix_scope) { /\Acurate/ }
-    subject { Curate::FormAttributeResolver.new(controller, prefix_scope) }
+    subject { Curate::FormResolver.new(controller, prefix_scope) }
 
     it 'should ignore non-partials' do
       expect(subject.find_all('index', 'garble', false, details)).to be_empty

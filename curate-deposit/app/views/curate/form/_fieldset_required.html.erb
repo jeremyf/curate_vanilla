@@ -1,0 +1,6 @@
+<fieldset>
+  <legend><%= fieldset.name %></legend>
+  <% fieldset.attributes.each do |attribute| %>
+    <%= render("curate/form/#{fieldset.work_type}/deposit/attribute_#{attribute.name}", f: f, attribute: attribute) %>
+  <% end %>
+</fieldset>
