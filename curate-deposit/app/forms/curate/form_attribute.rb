@@ -9,9 +9,17 @@ module Curate
       @type = attribute_configuration.fetch(:type)
       @options = attribute_configuration.fetch(:options)
     end
-    delegate :form, to: :fieldset
+    delegate :form, :work_type, to: :fieldset
     attr_reader :attribute_configuration, :type
     protected :attribute_configuration, :type
+
+    def render(f, template = f.template)
+      template.render(partial_path, f: f, attribute: self)
+    end
+
+    def partial_path
+      "curate/form/#{work_type}/deposit/attribute_#{name}"
+    end
 
     def input_options(options = nil)
       options ||= {}

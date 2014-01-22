@@ -67,7 +67,7 @@ module Curate
       end
       form_class.finalizer_config = config
       form_class.work_type = name
-      form_class.human_readable_type = name.titleize
+      form_class.human_readable_type = name.to_s.titleize
       form_class
     end
   end

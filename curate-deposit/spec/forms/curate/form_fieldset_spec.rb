@@ -22,10 +22,8 @@ module Curate
       subject { Curate::FormFieldset.new(form, name, attributes) }
       let(:template) { double("Template") }
       let(:form_builder) { double("Builder", template: template) }
-      before(:each) do
-        template.should_receive("render").with(subject.partial_path, {f: form_builder, fieldset: subject})
-      end
       it 'should render each attribute' do
+        template.should_receive("render").with(subject.partial_path, {f: form_builder, fieldset: subject})
         subject.render(form_builder)
       end
     end
