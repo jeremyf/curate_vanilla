@@ -46,10 +46,10 @@ gem 'unicorn'
 
 gem 'therubyracer', group: [:development, :staging]
 
-gem "curate", github: 'projecthydra/curate', ref: '9df24c4ac4e1a237e5e8c3ec1d3a0fb48cf865ef'
+gem "curate", github: 'projecthydra/curate', ref: '0dbd2cecc0ae3fdd106f58d0beafbe7b8f2f779f'
 gem "better_errors", group: :development
 gem "binding_of_caller", group: :development
-gem "quiet_assets", group: :development
+# gem "quiet_assets", group: :development
 gem "bootstrap-sass"
 gem "devise"
 gem "devise-guests", "~> 0.3"
