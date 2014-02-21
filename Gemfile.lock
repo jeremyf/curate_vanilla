@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: 0dbd2cecc0ae3fdd106f58d0beafbe7b8f2f779f
-  ref: 0dbd2cecc0ae3fdd106f58d0beafbe7b8f2f779f
+  revision: 8d6fc008f1b860abfe752a0a2598b519a9381d63
+  branch: develop
   specs:
-    curate (0.6.4)
+    curate (0.6.5)
       active_attr
       active_fedora-registered_attributes (~> 0.2.0)
       bootstrap-datepicker-rails
@@ -22,6 +22,7 @@ GIT
       morphine
       rails (~> 4.0.2)
       rails_autolink
+      rubydora (= 1.6.5)
       simple_form (~> 3.0.1)
       sufia-models (~> 3.4.0)
       virtus
@@ -340,7 +341,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rubydora (1.7.1)
+    rubydora (1.6.5)
       activemodel
       activesupport
       deprecation

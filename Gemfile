@@ -46,7 +46,7 @@ gem 'unicorn'
 
 gem 'therubyracer', group: [:development, :staging]
 
-gem "curate", github: 'projecthydra/curate', ref: '0dbd2cecc0ae3fdd106f58d0beafbe7b8f2f779f'
+gem "curate", github: 'projecthydra/curate', branch: 'develop'
 gem "better_errors", group: :development
 gem "binding_of_caller", group: :development
 # gem "quiet_assets", group: :development
