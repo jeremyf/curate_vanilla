@@ -462,6 +462,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   rails (= 4.0.2)
+  resque-pool
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

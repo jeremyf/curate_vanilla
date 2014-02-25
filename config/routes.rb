@@ -9,6 +9,8 @@ CurateVanilla::Application.routes.draw do
 
   namespace :admin do
     constraints AdminConstraint do
+      mount Resque::Server, :at => "queues"
+
       resources :accounts do 
         member { post :toggle_approval }
       end

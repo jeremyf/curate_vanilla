@@ -50,6 +50,7 @@ gem "curate", github: 'projecthydra/curate', branch: 'develop'
 gem "better_errors", group: :development
 gem "binding_of_caller", group: :development
 # gem "quiet_assets", group: :development
+ gem 'resque-pool'
 gem "bootstrap-sass"
 gem "devise"
 gem "devise-guests", "~> 0.3"
