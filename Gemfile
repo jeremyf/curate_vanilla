@@ -46,7 +46,7 @@ gem 'unicorn'
 
 gem 'therubyracer', group: [:development, :staging]
 
-gem "curate", github: 'projecthydra/curate', tag: '4cf07d13abe7da35af0dbdace2c2a890130818c8'
+gem "curate", github: 'projecthydra/curate', tag: '471472ca89603feacd2df05cfa3f46e84db75793'
 gem "better_errors", group: :development
 gem "binding_of_caller", group: :development
 # gem "quiet_assets", group: :development
@@ -56,7 +56,7 @@ gem "devise"
 gem "devise-guests", "~> 0.3"
 group :development, :test do
   gem "rspec-rails"
-  gem "byebug"
+  #gem "byebug"
 end
 
 gem "jettywrapper", group: [:development, :test]

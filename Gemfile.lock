@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: 4cf07d13abe7da35af0dbdace2c2a890130818c8
-  tag: 4cf07d13abe7da35af0dbdace2c2a890130818c8
+  revision: 471472ca89603feacd2df05cfa3f46e84db75793
+  tag: 471472ca89603feacd2df05cfa3f46e84db75793
   specs:
     curate (0.6.5)
       active_attr
@@ -22,7 +22,7 @@ GIT
       morphine
       rails (~> 4.0.2)
       rails_autolink
-      rubydora (= 1.6.5)
+      rubydora (~> 1.7.4)
       simple_form (~> 3.0.1)
       sufia-models (~> 3.4.0)
       virtus
@@ -39,7 +39,7 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active-fedora (6.7.6)
+    active-fedora (6.7.7)
       activesupport (>= 3.0.0)
       deprecation
       mediashelf-loggable
@@ -48,7 +48,7 @@ GEM
       rdf (~> 1.1.1.1)
       rdf-rdfxml (= 1.0.1)
       rsolr
-      rubydora (~> 1.6, >= 1.6.5)
+      rubydora (~> 1.7.4)
     active_attr (0.8.2)
       activemodel (>= 3.0.2, < 4.1)
       activesupport (>= 3.0.2, < 4.1)
@@ -64,7 +64,7 @@ GEM
       activesupport (= 4.0.2)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
-    activerecord-import (0.4.1)
+    activerecord-import (0.5.0)
       activerecord (>= 3.0)
     activeresource (4.0.0)
       activemodel (~> 4.0)
@@ -79,9 +79,10 @@ GEM
     acts_as_follower (0.2.1)
     arel (4.0.2)
     atomic (1.1.14)
-    axiom-types (0.0.5)
-      descendants_tracker (~> 0.0.1)
-      ice_nine (~> 0.9)
+    axiom-types (0.1.0)
+      descendants_tracker (~> 0.0.3)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.1.3)
     backports (3.6.0)
     bcrypt (3.1.6)
     bcrypt-ruby (3.1.5)
@@ -107,11 +108,8 @@ GEM
       sass (~> 3.2)
     breach-mitigation-rails (0.0.4)
     breadcrumbs_on_rails (2.3.0)
-    browser (0.4.0)
+    browser (0.4.1)
     builder (3.1.4)
-    byebug (2.5.0)
-      columnize (~> 0.3.6)
-      debugger-linecache (~> 1.2.0)
     cancan (1.6.10)
     capistrano (2.15.5)
       highline
@@ -142,10 +140,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    columnize (0.3.6)
     daemons (1.1.9)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     deprecation (0.1.0)
       activesupport
     descendants_tracker (0.0.3)
@@ -173,7 +169,8 @@ GEM
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
-    hooks (0.3.3)
+    hooks (0.3.6)
+      uber (~> 0.0.4)
     hydra-access-controls (6.4.1)
       active-fedora (~> 6.6)
       activesupport
@@ -206,7 +203,7 @@ GEM
       hydra-access-controls (= 6.4.1)
       hydra-core (= 6.4.1)
       rails (>= 3.2.6)
-    hydra-remote_identifier (0.6.2)
+    hydra-remote_identifier (0.6.3)
       activesupport (>= 3.2.13, < 5.0)
       rest-client (~> 1.6.7)
     i18n (0.6.9)
@@ -344,7 +341,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rubydora (1.6.5)
+    rubydora (1.7.4)
       activemodel
       activesupport
       deprecation
@@ -421,6 +418,7 @@ GEM
     turbolinks (2.0.0)
       coffee-rails
     tzinfo (0.3.38)
+    uber (0.0.4)
     uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -434,11 +432,11 @@ GEM
     uuidtools (2.1.4)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    virtus (1.0.1)
-      axiom-types (~> 0.0.5)
+    virtus (1.0.2)
+      axiom-types (~> 0.1)
       coercible (~> 1.0)
-      descendants_tracker (~> 0.0.1)
-      equalizer (~> 0.0.7)
+      descendants_tracker (~> 0.0.3)
+      equalizer (~> 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     xml-simple (1.1.3)
@@ -451,7 +449,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  byebug
   capistrano (~> 2.15)
   clamav
   coffee-rails (~> 4.0.0)
