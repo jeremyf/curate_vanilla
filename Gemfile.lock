@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: 471472ca89603feacd2df05cfa3f46e84db75793
-  tag: 471472ca89603feacd2df05cfa3f46e84db75793
+  revision: 9dc4304d0e8becca45b9d140223f8de456dc3601
+  tag: 9dc4304d0e8becca45b9d140223f8de456dc3601
   specs:
     curate (0.6.5)
       active_attr
