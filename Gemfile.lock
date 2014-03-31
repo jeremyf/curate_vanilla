@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: 65b381f6689e1b86a8630c697465503556f00b8a
-  tag: 65b381f6689e1b86a8630c697465503556f00b8a
+  revision: 894b3f517ace841fb0095e510e216448e6999f40
+  tag: 894b3f517ace841fb0095e510e216448e6999f40
   specs:
     curate (0.6.5)
       active_attr
@@ -128,7 +128,7 @@ GEM
     clamav (0.4.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.3)
+    cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coercible (1.0.0)
