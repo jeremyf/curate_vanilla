@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: b5f41656e320dcddcd1f924710ca74b1b3761888
+  revision: 155279b1f0145246e3392a9c86ca3abb6b085d9d
   tag: develop
   specs:
     curate (0.6.6)
