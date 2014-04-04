@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: 154056a6ed118caafc64fb63ad561290d9e0cd7e
-  tag: 154056a6ed118caafc64fb63ad561290d9e0cd7e
+  revision: 2fe0bf27f47ce84780485328225749fce46c52a5
+  tag: develop
   specs:
     curate (0.6.6)
       active_attr
@@ -493,7 +493,7 @@ GEM
     uglifier (2.3.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unf (0.1.3)
+    unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
     unicorn (4.7.0)
