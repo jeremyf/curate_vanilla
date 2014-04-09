@@ -1,9 +1,8 @@
 development: &DEFAULT
-  admin_usernames:
+  manager_usernames:
   - <%= ENV['USER'] %>
 test: &TEST
-  <<: *DEFAULT
-  admin_usernames:
+  manager_usernames:
   - <%= ENV['USER'] %>
   - an_admin_username
 ci:
