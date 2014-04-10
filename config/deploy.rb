@@ -265,7 +265,7 @@ task :staging do
   set :rails_env, 'staging'
   set :deploy_to, '/home/app/curatend'
   set :user,      'app'
-  set :domain,    fetch(:host, 'libvirt6.library.nd.edu')
+  set :domain,    fetch(:host, 'curatevanilla.library.nd.edu')
   set :bundle_without, [:development, :test, :debug]
   set :shared_directories,  %w(log)
   set :shared_files, %w()
@@ -287,14 +287,14 @@ task :pre_production do
   set :rails_env, 'pre_production'
   set :deploy_to, '/home/app/curatend'
   set :user,      'app'
-  set :domain,    fetch(:host, 'curatesvrpprd')
+  set :domain,    fetch(:host, 'localhost')
   set :bundle_without,  [:development, :test, :debug]
   set :shared_directories,  %w(log)
   set :shared_files, %w()
 
   default_environment['PATH'] = '/opt/ruby/current/bin:$PATH'
-  server "app@curatesvrpprd.library.nd.edu", :app, :web, :db, :primary => true
-  server "app@curatewkrpprd.library.nd.edu", :work, :primary => true
+  server "app@example.library.nd.edu", :app, :web, :db, :primary => true
+  server "app@example.library.nd.edu", :work, :primary => true
 
   before 'bundle:install', 'und:puppet_server', 'und:puppet_worker'
   after 'deploy:update_code', 'und:write_env_vars', 'und:write_build_identifier', 'und:update_secrets', 'deploy:symlink_update', 'deploy:migrate', 'deploy:precompile'
@@ -310,14 +310,14 @@ task :production do
     set :rails_env, 'production'
     set :deploy_to, '/home/app/curatend'
     set :user,      'app'
-    set :domain,    fetch(:host, 'curatesvrprod')
+    set :domain,    fetch(:host, 'localhost')
     set :bundle_without,  [:development, :test, :debug]
     set :shared_directories,  %w(log)
     set :shared_files, %w()
 
     default_environment['PATH'] = '/opt/ruby/current/bin:$PATH'
-    server "app@curatesvrprod.library.nd.edu", :app, :web, :db, :primary => true
-    server "app@curatewkrprod.library.nd.edu", :work, :primary => true
+    server "app@example.library.nd.edu", :app, :web, :db, :primary => true
+    server "app@exmaple.library.nd.edu", :work, :primary => true
 
     before 'bundle:install', 'und:puppet_server', 'und:puppet_worker'
     after 'deploy:update_code', 'und:write_env_vars', 'und:write_build_identifier', 'und:update_secrets', 'deploy:symlink_update', 'deploy:migrate', 'deploy:precompile'
