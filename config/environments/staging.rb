@@ -38,6 +38,10 @@ CurateVanilla::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( modernizr.js )
 
+  config.assets.precompile += %w( browse_everything.js )
+  
+  config.assets.precompile += %w( browse_everything.css )
+
   config.application_root_url = "https://localhost"
 
   Rails.application.routes.default_url_options[:host] = 'curatevanilla.library.nd.edu'
