@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/projecthydra/curate.git
-  revision: fff03e9a117c57339b1d666aa46f763a49e08c9e
-  ref: fff03e9a117c57339b1d666aa46f763a49e08c9e
+  revision: c4630b7a13e8ac0d01f7ff2d1b240bd12275d093
+  ref: c4630b7a13e8ac0d01f7ff2d1b240bd12275d093
   tag: develop
   specs:
     curate (0.6.6)
@@ -114,7 +114,7 @@ GEM
       sass (~> 3.2)
     breach-mitigation-rails (0.0.4)
     breadcrumbs_on_rails (2.3.0)
-    browse-everything (0.4.1)
+    browse-everything (0.4.2)
       bootstrap-sass
       dropbox-sdk (>= 1.6.2)
       font-awesome-rails
@@ -171,7 +171,7 @@ GEM
     devise-guests (0.3.3)
       devise
     diff-lcs (1.2.5)
-    dropbox-sdk (1.6.3)
+    dropbox-sdk (1.6.4)
       json
     ensure_valid_encoding (0.5.3)
     equalizer (0.0.9)
@@ -184,7 +184,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     ffi (1.9.3)
-    font-awesome-rails (4.0.3.1)
+    font-awesome-rails (4.0.3.2)
       railties (>= 3.2, < 5.0)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
@@ -199,7 +199,7 @@ GEM
       retriable (>= 1.4)
       signet (>= 0.5.0)
       uuidtools (>= 2.1.0)
-    google_drive (0.3.8)
+    google_drive (0.3.9)
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
