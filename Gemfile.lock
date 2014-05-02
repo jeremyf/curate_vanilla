@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/projecthydra/curate.git
-  revision: c4630b7a13e8ac0d01f7ff2d1b240bd12275d093
-  ref: c4630b7a13e8ac0d01f7ff2d1b240bd12275d093
+  remote: git://github.com/projecthydra-labs/curate.git
+  revision: 36c4ccb3fa8c314d259d8bc89fdfaee8863769ca
   tag: develop
   specs:
     curate (0.6.6)
@@ -82,7 +81,6 @@ GEM
     acts_as_follower (0.2.1)
     addressable (2.3.6)
     arel (4.0.2)
-    atomic (1.1.16)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
@@ -93,7 +91,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     backports (3.6.0)
     bcrypt (3.1.7)
-    better_errors (1.0.1)
+    better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
@@ -138,7 +136,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    childprocess (0.5.2)
+    childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     clamav (0.4.1)
@@ -155,7 +153,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.7.0)
     daemons (1.1.9)
     debug_inspector (0.0.2)
     deprecation (0.1.0)
@@ -203,8 +201,8 @@ GEM
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
-    hashie (2.0.5)
-    highline (1.6.20)
+    hashie (2.1.1)
+    highline (1.6.21)
     hike (1.2.3)
     hooks (0.3.6)
       uber (~> 0.0.4)
@@ -261,7 +259,7 @@ GEM
       i18n
       logger
       mediashelf-loggable
-    jquery-rails (3.0.4)
+    jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
@@ -270,7 +268,7 @@ GEM
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kgio (2.8.1)
+    kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
@@ -294,17 +292,17 @@ GEM
     minitest (4.7.5)
     mono_logger (1.1.0)
     morphine (0.1.1)
-    multi_json (1.9.2)
+    multi_json (1.9.3)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.14)
+    mysql2 (0.3.15)
     nest (1.1.2)
       redis
-    net-scp (1.1.2)
+    net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.7.0)
+    net-ssh (2.9.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     noid (0.6.6)
@@ -338,7 +336,7 @@ GEM
       mime-types
     polyglot (0.3.4)
     rack (1.5.2)
-    rack-protection (1.5.2)
+    rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -359,15 +357,15 @@ GEM
       activesupport (= 4.0.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.12.0)
-    rake (10.2.2)
+    raindrops (0.13.0)
+    rake (10.3.1)
     rdf (1.1.1.1)
     rdf-rdfxml (1.0.1)
       rdf (>= 1.0)
       rdf-xsd (>= 1.0)
     rdf-xsd (1.1.0)
       rdf (>= 1.1)
-    rdoc (3.12.2)
+    rdoc (4.1.1)
       json (~> 1.4)
     redis (3.0.7)
     redis-namespace (1.4.1)
@@ -388,12 +386,13 @@ GEM
     retriable (1.4.1)
     rsolr (1.0.10)
       builder (>= 2.1.2)
-    rspec-core (2.14.7)
-    rspec-expectations (2.14.4)
+    rspec-core (2.14.8)
+    rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.4)
-    rspec-rails (2.14.0)
+    rspec-mocks (2.14.6)
+    rspec-rails (2.14.2)
       actionpack (>= 3.0)
+      activemodel (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec-core (~> 2.14.0)
@@ -414,16 +413,16 @@ GEM
       mime-types
       nokogiri
       rest-client
-    sass (3.2.18)
-    sass-rails (4.0.2)
+    sass (3.2.19)
+    sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
-      sprockets-rails (~> 2.0.0)
-    sdoc (0.3.20)
-      json (>= 1.1.3)
-      rdoc (~> 3.10)
-    sentry-raven (0.7.1)
+      sprockets-rails (~> 2.0)
+    sdoc (0.4.0)
+      json (~> 1.8)
+      rdoc (~> 4.0, < 5.0)
+    sentry-raven (0.8.0)
       faraday (>= 0.7.6)
       hashie (>= 1.1.0)
       uuidtools
@@ -435,7 +434,7 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    sinatra (1.4.4)
+    sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
@@ -478,28 +477,31 @@ GEM
       resque (~> 1.23)
       resque-pool (= 0.3.0)
       zipruby (= 0.3.6)
-    therubyracer (0.12.0)
+    therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
-    thread_safe (0.3.1)
-      atomic (>= 1.1.7, < 2)
+    thread_safe (0.3.3)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     trollop (1.16.2)
+<<<<<<< HEAD
     turbolinks (2.2.2)
       coffee-rails
     tzinfo (0.3.38)
+=======
+    tzinfo (0.3.39)
+>>>>>>> Updating Gemfile to rebuild Curate Vanilla
     uber (0.0.4)
-    uglifier (2.3.3)
+    uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
-    unicorn (4.7.0)
+    unicorn (4.8.2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
