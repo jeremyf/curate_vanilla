@@ -487,13 +487,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     trollop (1.16.2)
-<<<<<<< HEAD
     turbolinks (2.2.2)
       coffee-rails
     tzinfo (0.3.38)
-=======
-    tzinfo (0.3.39)
->>>>>>> Updating Gemfile to rebuild Curate Vanilla
     uber (0.0.4)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
